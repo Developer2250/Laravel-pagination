@@ -1,66 +1,39 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🔑 Pagination is a common feature in web applications. Almost every Laravel application I've ever worked on has had some form of pagination implemented.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+But what is pagination and why do we use it? How can we implement pagination in our Laravel applications? And how do we decide which pagination method to use?
 
-## About Laravel
+# By using pagination you can:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Improve the performance of your application - Since you're fetching a smaller subset of data at a time, there's less data for you to fetch from the database, process/transform, and then return.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Improve the user experience - It's likely that the user will only ever be interested in a small subset of the data at a time (typically found in the first few pages, especially if filters and search terms are used). By using pagination, you can avoid displaying data that the user is not interested in.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Improve page loading times - By only fetching a subset of the data at a time, you can reduce the amount of data that needs to be loaded onto the page, which can improve page loading and JavaScript processing times.
 
-## Learning Laravel
+# Pagination can typically be split into two different types:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+`1. Offset-based pagination ` - This is the most common type of pagination you'll likely come across in your web apps, especially in user interfaces (UI). It involves fetching a subset of data from the database based on an "offset" and a "limit". For example, you might fetch 10 records starting from the 20th record to fetch the 3rd page of data.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+`2. Cursor-based pagination ` - This type of pagination involves fetching a subset of data based on a "cursor". The cursor is typically a unique identifier for a record in the database. For example, you might fetch the next 10 records starting from the record with an ID of 20.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Laravel provides three different methods for paginating Eloquent queries in your applications:
 
-## Laravel Sponsors
+     1. paginate - Uses offset-based pagination and fetches the total number of records in the dataset.
+     2. simplePaginate - Uses offset-based pagination but doesn't fetch the total number of records in the dataset.
+     3. cursorPaginate - Uses cursor-based pagination and doesn't fetch the total number of records in the dataset.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* A. Using the paginate Method => The paginate method allows you to fetch a subset of data from the database based on an offset and limit (we'll take a look at these later when we look at the underlying SQL queries).
 
-### Premium Partners
+[![y-BYUrb-KWRiy-QFf7-M-e3r-Hw.png](https://i.postimg.cc/3wrcn0bj/y-BYUrb-KWRiy-QFf7-M-e3r-Hw.png)](https://postimg.cc/9DSbf02z)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+* B. Using Simple paginate Method
+=> The simplePaginate method is very similar to the paginate method but with one key difference. The simplePaginate method doesn't fetch the total number of records in the dataset. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+=> [![k-BYd8-Gla-R7mj-ZUAJ7wwy7w.png](https://i.postimg.cc/TY41Rnn1/k-BYd8-Gla-R7mj-ZUAJ7wwy7w.png)](https://postimg.cc/yk0sjgQC)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+` Here is the full example with source code : https://tinyurl.com/bdcsz99r ` 
 
-## Security Vulnerabilities
+` Checkout more: https://laravel-news.com/laravel-pagination ` 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
